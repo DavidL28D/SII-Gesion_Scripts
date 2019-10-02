@@ -25,3 +25,4 @@ Route::get('/acerca', function () {
 
 Route::resource('languages', 'LanguageController');
 Route::resource('companies', 'CompanyController');
+Route::resource('sos', 'SoController');

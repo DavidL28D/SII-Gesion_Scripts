@@ -14,7 +14,8 @@ class SoController extends Controller
      */
     public function index()
     {
-        //
+        $so=So::orderBy('id','DESC')->paginate(5);
+        return view('sos.index',compact('so'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SoController extends Controller
      */
     public function create()
     {
-        //
+        return view('sos.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class SoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'version' => 'required',
+            'compilacion' => 'required'
+        ]);
+        So::create($request->all());
+        return redirect()->route('sos.index')->with('success','Sistema Operativo Creado');
     }
 
     /**
@@ -46,7 +53,7 @@ class SoController extends Controller
      */
     public function show(So $so)
     {
-        //
+        return view('sos.show',compact('so'));
     }
 
     /**
@@ -57,7 +64,7 @@ class SoController extends Controller
      */
     public function edit(So $so)
     {
-        //
+        return view('sos.edit',compact('so'));
     }
 
     /**
@@ -69,7 +76,13 @@ class SoController extends Controller
      */
     public function update(Request $request, So $so)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'version' => 'required',
+            'compilacion' => 'required'
+        ]);
+        $so->update($request->all());
+        return redirect()->route('sos.index')->with('success','Sistema Operativo Modificado');
     }
 
     /**
@@ -80,6 +93,7 @@ class SoController extends Controller
      */
     public function destroy(So $so)
     {
-        //
+        $so->delete();
+        return redirect()->route('sos.index')->with('success','Sistema Operatico Eliminado');
     }
 }
