@@ -9,15 +9,15 @@
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-        <li class="nav-item active">
-            <a class="nav-link" href="/">Incio <span class="sr-only">(current)</span></a>
+        <li class="nav-item {{Request::is('/') ? 'active' : '' }}">
+            <a class="nav-link" href="/">Incio <span class="sr-only"></span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{Request::is('contacto') ? 'active' : '' }}">
             <a class="nav-link" href="/contacto">Contactame</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{Request::is('acerca') ? 'active' : '' }}">
             <a class="nav-link" href="/acerca">Acerca de</a>
         </li>
 
