@@ -18,7 +18,7 @@ class CreateSosTable extends Migration
             $table->string('nombre', 20);
             $table->string('version', 20);
             $table->string('compilacion', 10);
-            $table->string('descripcion', 50);
+            $table->string('descripcion', 50)->nullable();
             $table->timestamps();
         });
     }

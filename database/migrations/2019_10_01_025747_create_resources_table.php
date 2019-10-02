@@ -18,6 +18,7 @@ class CreateResourcesTable extends Migration
             $table->string('nombre', 20);
             $table->string('version', 20);
             $table->integer('tipo');
+            $table->string('descripcion', 50)->nullable();
             $table->timestamps();
         });
     }

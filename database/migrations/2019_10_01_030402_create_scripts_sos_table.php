@@ -15,7 +15,7 @@ class CreateScriptsSosTable extends Migration
     {
         Schema::create('scripts_sos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('script_id')->references('id')->on('scripts');
+            $table->integer('script_id')->references('id')->on('scripts')->nullable();
             $table->integer('so_id')->references('id')->on('sos');
             $table->timestamps();
         });

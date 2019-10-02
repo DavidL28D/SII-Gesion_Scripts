@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/contacto', function () {
+    return view('contact');
+});
+
+Route::get('/acerca', function () {
+    return view('about');
+});
+
+Route::resource('languages', 'LanguageController');

@@ -14,7 +14,8 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
+        $languages=Language::orderBy('id','DESC')->paginate(5);
+        return view('languages.index',compact('languages')); 
     }
 
     /**
@@ -24,7 +25,7 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('languages.create');
     }
 
     /**
@@ -35,7 +36,11 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+        ]);
+        Language::create($request->all());
+        return redirect()->route('languages.index')->with('success','Lenguaje Creado');
     }
 
     /**
@@ -46,7 +51,7 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-        //
+        return view('languages.show',compact('language'));
     }
 
     /**
@@ -57,7 +62,7 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        //
+        return view('languages.edit',compact('language'));
     }
 
     /**
@@ -69,7 +74,14 @@ class LanguageController extends Controller
      */
     public function update(Request $request, Language $language)
     {
-        //
+
+        $request->validate([
+            'nombre' => 'required',
+        ]);
+  
+        $language->update($request->all());
+        return redirect()->route('languages.index')->with('success','Lenguaje Modificado');
+ 
     }
 
     /**
@@ -80,6 +92,7 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
+        $language->delete();
+        return redirect()->route('languages.index')->with('success','Lenguaje Eliminado');
     }
 }

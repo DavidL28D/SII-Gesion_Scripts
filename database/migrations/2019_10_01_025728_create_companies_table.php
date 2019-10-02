@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('nombre', 20);
             $table->string('direccion', 50);
             $table->string('telefono', 10);
-            $table->string('descripcion', 50);
+            $table->string('descripcion', 50)->nullable();
             $table->timestamps();
         });
     }

@@ -16,8 +16,8 @@ class CreateScriptsTable extends Migration
         Schema::create('scripts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 20);
-            $table->string('argumentos', 50);
-            $table->string('retorno', 50);
+            $table->string('argumentos', 50)->nullable();
+            $table->string('retorno', 50)->nullable();
             $table->string('descripcion', 50);
             $table->string('permisos', 3);
             $table->date('creacion');
