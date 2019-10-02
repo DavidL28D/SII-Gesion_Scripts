@@ -14,7 +14,7 @@ class SoController extends Controller
      */
     public function index()
     {
-        $so=So::orderBy('id','DESC')->paginate(5);
+        $so=So::orderBy('nombre','ASC')->paginate(10);
         return view('sos.index',compact('so'));
     }
 

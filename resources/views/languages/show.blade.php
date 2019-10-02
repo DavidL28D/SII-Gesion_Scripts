@@ -21,25 +21,22 @@
                 <br>
                 <div class="table-container">
                     <table id="mytable" class="table table-bordred table-striped">
-                        <thead>
-                            <th>Nombre</th>
-                            <th>Version</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </thead>
-
+                     
                         <tbody>
+
+                            <h4>Nombre</h4>
+                            <p>{{$language->nombre}}</p>
+                            <h4>Version</h4>
+                            <p>{{$language->version}}</p>
                             
                                 <tr>
-                                    <td>{{$language->nombre}}</td>
-                                    <td>{{$language->version}}</td>
-                                    <td><a class="btn btn-primary btn-xs" href="{{action('LanguageController@edit', $language)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td><a class="btn btn-success btn-xs btn-block" href="{{action('LanguageController@edit', $language)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>
                                     <td>
                                     <form action="{{action('LanguageController@destroy', $language->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                                    <button class="btn btn-danger btn-xs btn-block" type="submit">Eliminar<span class="glyphicon glyphicon-trash"></span></button>
                                     </td>
                                 </tr>
 

@@ -14,7 +14,8 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        //
+        $resource=Resource::orderBy('nombre','ASC')->paginate(10);
+        return view('resources.index',compact('resource'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('resources.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'version' => 'required',
+            'tipo' => 'required'
+        ]);
+        Resource::create($request->all());
+        return redirect()->route('resources.index')->with('success','Recurso Creado');
     }
 
     /**
@@ -46,7 +53,7 @@ class ResourceController extends Controller
      */
     public function show(Resource $resource)
     {
-        //
+        return view('resources.show',compact('resource'));
     }
 
     /**
@@ -57,7 +64,7 @@ class ResourceController extends Controller
      */
     public function edit(Resource $resource)
     {
-        //
+        return view('resources.edit',compact('resource'));
     }
 
     /**
@@ -69,7 +76,15 @@ class ResourceController extends Controller
      */
     public function update(Request $request, Resource $resource)
     {
-        //
+
+        $request->validate([
+            'nombre' => 'required',
+            'version' => 'required',
+            'tipo' => 'required'
+        ]);
+  
+        $resource->update($request->all());
+        return redirect()->route('resources.index')->with('success','Recurso Modificado');
     }
 
     /**
@@ -80,6 +95,7 @@ class ResourceController extends Controller
      */
     public function destroy(Resource $resource)
     {
-        //
+        $resource->delete();
+        return redirect()->route('resources.index')->with('success','Recurso Eliminado');
     }
 }
