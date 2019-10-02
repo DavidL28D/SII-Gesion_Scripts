@@ -14,7 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $company=Company::orderBy('id','DESC')->paginate(5);
+        return view('companies.index',compact('company')); 
     }
 
     /**
@@ -35,7 +36,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required'
+        ]);
+        Company::create($request->all());
+        return redirect()->route('companies.index')->with('success','Compania Creado');
     }
 
     /**
@@ -46,7 +53,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('companies.show',compact('company'));
     }
 
     /**
@@ -57,7 +64,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit',compact('company'));
     }
 
     /**
@@ -69,7 +76,13 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required'
+        ]);
+        $company->update($request->all());
+        return redirect()->route('companies.index')->with('success','Compania Modificada');
     }
 
     /**
@@ -80,6 +93,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect()->route('companies.index')->with('success','Compania Eliminada');
     }
 }

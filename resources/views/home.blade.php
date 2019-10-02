@@ -15,11 +15,11 @@
         <br><br>
         <a class="btn btn-primary btn-md" href="/languages" role="button">Gestionar Lenguajes</a>
         <br><br>
-        <a class="btn btn-primary btn-md" href="/languages" role="button">Gestionar Sistemas Operativos</a>
+        <a class="btn btn-primary btn-md" href="/sos" role="button">Gestionar Sistemas Operativos</a>
         <br><br>
-        <a class="btn btn-primary btn-md" href="/languages" role="button">Gestionar Recursos</a>
+        <a class="btn btn-primary btn-md" href="/resources" role="button">Gestionar Recursos</a>
         <br><br>
-        <a class="btn btn-primary btn-md" href="/languages" role="button">Gestionar Empresas</a>
+        <a class="btn btn-primary btn-md" href="/companies" role="button">Gestionar Empresas</a>
         </div>
     </div>
 
