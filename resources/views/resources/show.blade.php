@@ -38,9 +38,12 @@
                                     }else if($resource->tipo == 3){
                                         echo "<p>Modulo</p>";
                                     }
+                                    
+                                    if($resource->descripcion != null){
+                                        echo"<h4>Descripcion</h4>";
+                                        echo"<p>{{$resource->descripcion}}</p>";
+                                    }
                                     ?>
-                                    <h4>Descripcion</h4>
-                                    <p>{{$resource->descripcion}}</p>
                                     
                                 <tr>
                                     <td><a class="btn btn-success btn-xs btn-block" href="{{action('ResourceController@edit', $resource)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>

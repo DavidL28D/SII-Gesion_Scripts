@@ -26,8 +26,12 @@
 
                             <h4>Nombre</h4>
                             <p>{{$language->nombre}}</p>
-                            <h4>Version</h4>
-                            <p>{{$language->version}}</p>
+                            <?php
+                            if($language->version != null){
+                                echo"<h4>Version</h4>";
+                                echo"<p>{{$language->version}}</p>";
+                            }
+                            ?>
                             
                                 <tr>
                                     <td><a class="btn btn-success btn-xs btn-block" href="{{action('LanguageController@edit', $language)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>

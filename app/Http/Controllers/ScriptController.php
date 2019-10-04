@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Script;
+use App\Language;
+use App\Company;
+use App\So;
+use App\Resource;
 use Illuminate\Http\Request;
 
 class ScriptController extends Controller
@@ -14,7 +18,8 @@ class ScriptController extends Controller
      */
     public function index()
     {
-        //
+        $script=Script::orderBy('nombre','ASC')->paginate(10);
+        return view('scripts.index',compact('script'));
     }
 
     /**
@@ -23,8 +28,13 @@ class ScriptController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $lenguajes=Language::all(); 
+        $empresas=Company::all();
+        $sos=So::all();
+        $recursos = Resource::all();
+        $scripts=Script::all();
+        return view('scripts.create', compact('lenguajes', 'empresas', 'sos', 'recursos', 'scripts'));
     }
 
     /**
@@ -35,7 +45,21 @@ class ScriptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'permisos' => 'required',
+            'creacion' => 'required',
+            'lenguaje_id' => 'required',
+            'so_id' => 'required'
+        ]);
+
+        $s = Script::create($request->all());
+        $s->sos()->attach($s->so_id);
+        if($s->recurso_id != null){
+            $s->resources()->attach($s->recurso_id);
+        }
+        return redirect()->route('scripts.index')->with('success','Scripc Creado');
     }
 
     /**
@@ -45,8 +69,10 @@ class ScriptController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Script $script)
-    {
-        //
+    {   
+        $sos = So::find($script->so_id);
+        $resources = Resource::find($script->recurso_id);
+        return view('scripts.show',compact('script, sos, resources'));
     }
 
     /**
@@ -57,7 +83,7 @@ class ScriptController extends Controller
      */
     public function edit(Script $script)
     {
-        //
+        return view('scripts.edit',compact('script'));
     }
 
     /**
@@ -69,7 +95,17 @@ class ScriptController extends Controller
      */
     public function update(Request $request, Script $script)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'descipcion' => 'required',
+            'permisos' => 'required',
+            'creacion' => 'required',
+            'lenguaje_id' => 'required',
+            'so_id' => 'required'
+        ]);
+  
+        $script->update($request->all());
+        return redirect()->route('scripts.index')->with('success','Script Modificado');
     }
 
     /**
@@ -79,7 +115,9 @@ class ScriptController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Script $script)
-    {
-        //
+    {   
+        $script->sos()->detach();
+        $script->delete();
+        return redirect()->route('scripts.index')->with('success','Script Eliminado');
     }
 }

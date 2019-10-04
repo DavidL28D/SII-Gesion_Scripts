@@ -11,7 +11,7 @@
         <hr class="my-2">
         <h2>Administracion</h2>
         <br>
-        <a class="btn btn-primary btn-md" href="" role="button">Gestion de Scripts</a>
+        <a class="btn btn-primary btn-md" href="/scripts" role="button">Gestion de Scripts</a>
         <br><br>
         <a class="btn btn-primary btn-md" href="/languages" role="button">Gestionar Lenguajes</a>
         <br><br>

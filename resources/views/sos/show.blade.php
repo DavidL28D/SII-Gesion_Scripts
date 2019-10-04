@@ -31,8 +31,12 @@
                                     <p>{{$so->version}}</p>
                                     <h4>Compilacion</h4>
                                     <p>{{$so->compilacion}}</p>
-                                    <h4>Descripcion</h4>
-                                    <p>{{$so->descripcion}}</p>
+                                    <?php
+                                    if($so->descripcion != null){
+                                        echo"<h4>Descripcion</h4>";
+                                        echo"<p>{{$so->decripcion}}</p>";
+                                    }
+                                    ?>
                                     
                                 <tr>
                                     <td><a class="btn btn-success btn-xs btn-block" href="{{action('SoController@edit', $so)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>

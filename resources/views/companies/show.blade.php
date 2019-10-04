@@ -25,25 +25,29 @@
                       
                         <tbody>
 
-                                    <h4>Nombre</h4>
-                                    <p>{{$company->nombre}}</p>
-                                    <h4>Direccion</h4>
-                                    <p>{{$company->direccion}}</p>
-                                    <h4>Telefono</h4>
-                                    <p>{{$company->telefono}}</p>
-                                    <h4>Descripcion</h4>
-                                    <p>{{$company->descripcion}}</p>
-                                    
-                                <tr>
-                                    <td><a class="btn btn-success btn-xs btn-block" href="{{action('CompanyController@edit', $company)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>
-                                    <td>
-                                    <form action="{{action('CompanyController@destroy', $company->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button class="btn btn-danger btn-xs btn-block" type="submit">Eliminar<span class="glyphicon glyphicon-trash"></span></button>
-                                    </td>
-                                </tr>
+                            <h4>Nombre</h4>
+                            <p>{{$company->nombre}}</p>
+                            <h4>Direccion</h4>
+                            <p>{{$company->direccion}}</p>
+                            <h4>Telefono</h4>
+                            <p>{{$company->telefono}}</p>
+                            <?php
+                            if($company->descripcion != null){
+                                echo"<h4>Descripcion</h4>";
+                                echo"<p>{{$company->descripcion}}</p>";
+                            }
+                            ?>
+                            
+                            <tr>
+                                <td><a class="btn btn-success btn-xs btn-block" href="{{action('CompanyController@edit', $company)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>
+                                <td>
+                                <form action="{{action('CompanyController@destroy', $company->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input name="_method" type="hidden" value="DELETE">
+                                <button class="btn btn-danger btn-xs btn-block" type="submit">Eliminar<span class="glyphicon glyphicon-trash"></span></button>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>

@@ -21,9 +21,10 @@ class CreateScriptsTable extends Migration
             $table->string('descripcion', 50);
             $table->string('permisos', 3);
             $table->date('creacion');
-            $table->integer('empresa_id')->references('id')->on('companies');
-            $table->integer('script_id')->references('id')->on('scripts');
             $table->integer('lenguaje_id')->references('id')->on('languages');
+            $table->integer('so_id')->references('id')->on('sos');
+            $table->integer('recurso_id')->references('id')->on('resources')->nullable();
+            $table->integer('empresa_id')->references('id')->on('companies')->nullable();
             $table->timestamps();
         });
     }

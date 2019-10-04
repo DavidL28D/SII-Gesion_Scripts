@@ -1,13 +1,13 @@
 @extends('main')
-@section('title', 'Listado de SOs')
+@section('title', 'Listado de Scripts')
 @section('content')
 
 <div class="row">
 
     <div class="col-md-4 text-center">
-        <h1 class="text-center">Listado de SO(s)</h1>
+        <h1 class="text-center">Listado de Script(s)</h1>
         <br>
-        <p class="text-center">A continuacion se muestra una lista con los diversas sistemas operativos almacenados, haz clic en los botones correspondientes para ver en detalle, modificarlos o eliminarlos.</p>
+        <p class="text-center">A continuacion se muestra una lista con los diversos scripts almacenados, haz clic en los botones correspondientes para ver en detalle, modificarlos o eliminarlos.</p>
         <a href="/" class="btn btn-primary btn-block" >Atrás</a>
         
     </div>
@@ -20,7 +20,7 @@
                 <div class="panel-body">
                 <div class="pull-right">
                     <div class="btn-group">
-                    <a href="{{ route('sos.create') }}" class="btn btn-success" >Añadir SO</a>
+                    <a href="{{ route('scripts.create') }}" class="btn btn-success" >Añadir Script</a>
                     </div>
                 </div>
                 <br>
@@ -28,22 +28,20 @@
                     <table id="mytable" class="table table-bordred table-striped">
                         <thead>
                             <th>Nombre</th>
-                            <th>Compilacion</th>
                             <th>Detalles</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </thead>
 
                         <tbody>
-                            @if($so->count())  
-                                @foreach($so as $s)  
+                            @if($script->count())  
+                                @foreach($script as $s)  
                                 <tr>
                                     <td>{{$s->nombre}}</td>
-                                    <td>{{$s->compilacion}}</td>
-                                    <td><a class="btn btn-secondary btn-xs" href="{{action('SoController@show', $s)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                    <td><a class="btn btn-primary btn-xs" href="{{action('SoController@edit', $s)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td><a class="btn btn-secondary btn-xs" href="{{action('ScriptController@show', $s)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td><a class="btn btn-primary btn-xs" href="{{action('ScriptController@edit', $s)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td>
-                                    <form action="{{action('SoController@destroy', $s)}}" method="post">
+                                    <form action="{{action('ScriptController@destroy', $s->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">
@@ -63,7 +61,7 @@
                     </table>
                 </div>
             </div>
-            {{ $so->links() }}
+            {{ $script->links() }}
             </div>
         </div>
         </section>

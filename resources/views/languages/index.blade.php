@@ -41,7 +41,7 @@
                                     <td><a class="btn btn-secondary btn-xs" href="{{action('LanguageController@show', $language)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td><a class="btn btn-primary btn-xs" href="{{action('LanguageController@edit', $language)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td>
-                                    <form action="{{action('LanguageController@destroy', $language->id)}}" method="post">
+                                    <form action="{{action('LanguageController@destroy', $language)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">

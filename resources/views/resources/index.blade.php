@@ -41,7 +41,7 @@
                                     <td><a class="btn btn-secondary btn-xs" href="{{action('ResourceController@show', $r)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td><a class="btn btn-primary btn-xs" href="{{action('ResourceController@edit', $r)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td>
-                                    <form action="{{action('ResourceController@destroy', $r->id)}}" method="post">
+                                    <form action="{{action('ResourceController@destroy', $r)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">
