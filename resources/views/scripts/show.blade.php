@@ -53,13 +53,26 @@
                             <h5>Creacion</h5>
                             <p>{{$script->creacion}}</p>
 
+                            <h5>Lenguaje</h5>
+                            <p>{{$script->}}</p>
+
                             <hr>
                             <h3>Sistemas Operativos</h3>
                             <p>{{$sos->nombre}}</p>
 
-                            <hr>
-                            <h3>Recursos</h3>
-                            <p>{{$resources->nombre}}</p>
+                            <?php
+                                if($script->recurso_id != null){
+                                    echo"<hr>";
+                                    echo"<h5>Recurso</h5>";
+                                    echo"<p>{{$resources->nombre}}</p>";
+                                }
+                                
+                                if($script->empresa_id != null){
+                                    echo"<hr>";
+                                    echo"<h5>Empresa</h5>";
+                                    echo"<p>{{$company->nombre}}</p>";
+                                }
+                            ?>
                             
                                 <tr>
                                     <td><a class="btn btn-success btn-xs btn-block" href="{{action('ScriptController@edit', $script)}}" ><span class="glyphicon glyphicon-pencil">Editar</span></a></td>

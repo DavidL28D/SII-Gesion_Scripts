@@ -41,7 +41,7 @@
                                     <td><a class="btn btn-secondary btn-xs" href="{{action('ScriptController@show', $s)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td><a class="btn btn-primary btn-xs" href="{{action('ScriptController@edit', $s)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                                     <td>
-                                    <form action="{{action('ScriptController@destroy', $s->id)}}" method="post">
+                                    <form action="{{action('ScriptController@destroy', $s)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input name="_method" type="hidden" value="DELETE">

@@ -59,7 +59,7 @@ class ScriptController extends Controller
         if($s->recurso_id != null){
             $s->resources()->attach($s->recurso_id);
         }
-        return redirect()->route('scripts.index')->with('success','Scripc Creado');
+        return redirect()->route('scripts.index')->with('success','Script Creado');
     }
 
     /**
@@ -71,8 +71,21 @@ class ScriptController extends Controller
     public function show(Script $script)
     {   
         $sos = So::find($script->so_id);
-        $resources = Resource::find($script->recurso_id);
-        return view('scripts.show',compact('script, sos, resources'));
+        $language = Language::find($script->lenguaje_id);
+
+        if($script->recurso_id != null){
+            $resources = Resource::find($script->recurso_id);
+        }else{
+            $resources = null;
+        }
+
+        if($script->empresa_id != null){
+            $company = Company::find($script->empresa_id);
+        }else{
+            $company = null;
+        }
+        
+        return view('scripts.show', compact('script', 'sos', 'language', 'resources', 'company'));
     }
 
     /**
